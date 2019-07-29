@@ -9,9 +9,9 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController{
+class ViewController: UIViewController, AVAudioPlayerDelegate{
     
-    var audioPlayer : AVAudioPlayer?
+    var audioPlayer : AVAudioPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +23,10 @@ class ViewController: UIViewController{
         let url = Bundle.main.url(forResource: "note\(sender.tag)", withExtension: "wav")!
         do{
             audioPlayer = try AVAudioPlayer(contentsOf: url)
-            guard let audioPlayer = audioPlayer else {return}
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
         }catch let error as NSError {
-            print(error.description)
+            print(error)
         }
+        audioPlayer.play()
     }
     
   
